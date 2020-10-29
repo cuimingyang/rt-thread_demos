@@ -3,7 +3,7 @@
 #ifndef __RTTHREAD_CFG_H__
 #define __RTTHREAD_CFG_H__
 
-#include "RTE_Components.h"
+//#include "RTE_Components.h"
 
 // <<< Use Configuration Wizard in Context Menu >>>
 // <h>Basic Configuration
