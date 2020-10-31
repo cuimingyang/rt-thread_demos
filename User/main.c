@@ -4,76 +4,29 @@
   * @author  fire
   * @version V1.0
   * @date    2015-xx-xx
-  * @brief   ¿ØÖÆ¶à²ÊÁ÷Ë®µÆ
+  * @brief   ï¿½ï¿½ï¿½Æ¶ï¿½ï¿½ï¿½ï¿½Ë®ï¿½ï¿½
   ******************************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Ò°»ð  STM32 F429 ¿ª·¢°å 
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * Êµï¿½ï¿½Æ½Ì¨:Ò°ï¿½ï¿½  STM32 F429 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+  * ï¿½ï¿½Ì³    :http://www.firebbs.cn
+  * ï¿½Ô±ï¿½    :https://fire-stm32.taobao.com
   *
   ******************************************************************************
   */
-#include "stm32f4xx.h"
-#include "./led/bsp_led.h"
+#include "board.h"
+#include "rtthread.h"
 
-void Delay(__IO u32 nCount); 
 
 /**
-  * @brief  Ö÷º¯Êý
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  ä¸»å‡½æ•°
+  * @param  æ— 
+  * @retval æ— 
   */
 int main(void)
 {
-	/* LED ¶Ë¿Ú³õÊ¼»¯ */
-	LED_GPIO_Config();
-
-	/* ¿ØÖÆLEDµÆ */
-	while (1)
-	{
-		LED1( ON );			 // ÁÁ 
-		Delay(0xFFFFFF);
-		LED1( OFF );		  // Ãð
-
-		LED2( ON );			// ÁÁ 
-		Delay(0xFFFFFF);
-		LED2( OFF );		  // Ãð
-
-		LED3( ON );			 // ÁÁ 
-		Delay(0xFFFFFF);
-		LED3( OFF );		  // Ãð	
-
-		/*ÂÖÁ÷ÏÔÊ¾ ºìÂÌÀ¶»Æ×ÏÇà°× ÑÕÉ«*/
-		LED_RED;
-		Delay(0xFFFFFF);
-		
-		LED_GREEN;
-		Delay(0xFFFFFF);
-		
-		LED_BLUE;
-		Delay(0xFFFFFF);
-		
-		LED_YELLOW;
-		Delay(0xFFFFFF);
-		
-		LED_PURPLE;
-		Delay(0xFFFFFF);
-				
-		LED_CYAN;
-		Delay(0xFFFFFF);
-		
-		LED_WHITE;
-		Delay(0xFFFFFF);
-		
-		LED_RGBOFF;
-		Delay(0xFFFFFF);
-	}
+	
 }
 
-void Delay(__IO uint32_t nCount)	 //¼òµ¥µÄÑÓÊ±º¯Êý
-{
-	for(; nCount != 0; nCount--);
-}
 /*********************************************END OF FILE**********************/
 
