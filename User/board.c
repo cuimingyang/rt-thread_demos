@@ -40,6 +40,11 @@ void rt_hw_board_init()
     /* 初始化 SysTick */
     SysTick_Config( SystemCoreClock / RT_TICK_PER_SECOND );
 
+    /* 硬件BSP初始化放在这里，比如LED，串口、LCD */
+
+    /* 初始化开发板的LED */
+    LED_GPIO_Config();
+    
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
     rt_components_board_init();
