@@ -12,6 +12,7 @@
  * 2017-07-24     Tanek        the first version
  */
 #include "board.h"
+#include "bsp_usart.h"
 
 #include <rthw.h>
 #include <rtthread.h>
@@ -44,7 +45,10 @@ void rt_hw_board_init()
 
     /* 初始化开发板的LED */
     LED_GPIO_Config();
-    
+	
+    /* 初始化开发板的串口 */
+    USARTx_Config();
+	
     /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
     rt_components_board_init();
@@ -70,4 +74,32 @@ void SysTick_Handler(void)
 	rt_interrupt_leave();
 }
 
+/**
+* @brief 重映射串口 DEBUG_USARTx 到 rt_kprintf()函数
+* Note： DEBUG_USARTx 是在 bsp_usart.h 中定义的宏，默认使用串口 1
+* @param str：要输出到串口的字符串
+* @retval 无
+*
+* @attention
+*
+*/
+void rt_hw_console_output(const char *str)
+{
+    /* 进入临界段 */
+    rt_enter_critical();
+
+    /* 直到字符串结束 */
+    while (*str!='\0') {
+        /* 换行 */
+        if (*str=='\n') {
+            USART_SendData(USARTx, '\r');
+            while (USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET);
+        }
+        USART_SendData(USARTx, *str++);
+        while (USART_GetFlagStatus(USARTx, USART_FLAG_TXE) == RESET);
+    }
+
+    /* 退出临界段 */
+    rt_exit_critical();
+}
 /****************************END OF FILE***************************/

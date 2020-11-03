@@ -61,9 +61,11 @@ static void led1_thread_entry(void* parameter)
 	while(1){
 		LED1_ON;
 		rt_thread_delay(500); 
-
+		rt_kprintf("led1_thread running,LED1_ON\r\n");
+		
 		LED1_OFF;
 		rt_thread_delay(500);
+		rt_kprintf("led1_thread running,LED1_OFF\r\n");
 	}
 }
 
